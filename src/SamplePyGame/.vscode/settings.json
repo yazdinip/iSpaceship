@@ -3,5 +3,5 @@
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": false,
     "python.linting.pycodestyleEnabled": true,
-    "python.pythonPath": "/usr/bin/python3.6"
+    "python.pythonPath": "C:\\Users\\pyazd\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe"
 }
