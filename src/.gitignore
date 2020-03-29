@@ -1,0 +1,17 @@
+*.synctex.gz
+*.aux
+*.log
+CASCON/Programming4Math.pdf
+*.out
+*.cut
+*.bbl
+*.blg
+*.synctex*
+*DS_Store
+*.nav
+*.snm
+*.toc
+*.vrb
+*.pag
+*_minted-*
+*.vscode
