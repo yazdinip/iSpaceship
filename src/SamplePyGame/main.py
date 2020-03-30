@@ -3,9 +3,12 @@ import random
 
 import pygame
 from pygame import mixer
+# import os
 
+# os.environ["SDL_VIDEODRIVER"] = "dummy"
 # Intialize the pygame
 pygame.init()
+
 
 # create the screen
 screen = pygame.display.set_mode((800, 600))
