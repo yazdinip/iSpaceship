@@ -29,9 +29,12 @@ class Spaceship(object):
     def getCurrentHealth(self):
         return self.currentHealth
 
+    def getAbilityCoolDown(self, i):
+        return self.abilityList[i].getCurrentCoolDown()
+
     # Setter Methods
     def takeDamage(self, damage):
-        self.currentHealth -= damage
+        self.currentHealth = self.currentHealth - damage
     
     def resetHealth(self):
         self.currentHealth = self.maxHealth
@@ -39,7 +42,7 @@ class Spaceship(object):
     def setBuff(self, buff):
         self.currentBuff = buff
 
-    def setAbilityCooldown(self, i):
+    def setAbilityCoolDown(self, i):
         self.abilityList[i].setCoolDown()
 
     def setAttackDmg(self, damage):

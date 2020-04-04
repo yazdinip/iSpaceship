@@ -18,7 +18,7 @@ class Ability(object):
         return self.coolDown
     
     def getCurrentCoolDown(self):
-        return self.currentColdDown
+        return self.currentCoolDown
 
     def getAbilityName(self):
         return self.abilityName
@@ -27,10 +27,10 @@ class Ability(object):
         return self.hitChance
 
     def setCoolDown(self):
-        self.currentColdDown = self.coolDown
+        self.currentCoolDown = self.currentCoolDown + self.coolDown
 
     def reduceCoolDown(self):
-        if(self.currentColdDown != 0):
-            self.currentColdDown -= 1
+        if(self.currentCoolDown != 0):
+            self.currentCoolDown -= 1
 
     
