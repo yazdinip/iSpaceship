@@ -43,7 +43,6 @@ class Battle():
 
     def attack(self, move):
         if(self.currentTurn == Turn.PLAYER):
-            print("YO")
             if(move == 0):
                 self.enemyShip.takeDamage(self.playerShip.getAutoDamage())
                 print("Player attacks enemy using autoattack")
@@ -65,7 +64,6 @@ class Battle():
                 print("Player attacks enemy using " + self.playerShip.getAbility(3).getAbilityName())
         
         else:
-            print("BRO")
             if(move == 0):
                 self.playerShip.takeDamage(self.enemyShip.getAutoDamage())
                 print("Enemy attacks player using autoattack")
@@ -85,7 +83,19 @@ class Battle():
                 self.playerShip.takeDamage(self.enemyShip.getAbility(3).getAbilityDamage())
                 self.enemyShip.setAbilityCoolDown(3)
                 print("Enemy attacks player using " + self.enemyShip.getAbility(3).getAbilityName())
-        
+
+#####################################################################################
+#####################################  TO DO #####################################
+#####################################################################################
+
+# Add ability hit chance
+# Add ability buff handling
+# Add ability cooldown handling
+
+#####################################################################################
+#####################################  TESTING  #####################################
+#####################################################################################
+
 def checkStats(ship):
             print("Current Health: ", ship.getCurrentHealth())
             print("Current Buff: ", ship.getCurrentBuff())
