@@ -1,6 +1,6 @@
 import AbilityBuff
 
-class Spaceship():
+class Spaceship(object):
 
     def __init__(self, maxHealth, attackDmg, abilityList):
 
@@ -23,6 +23,12 @@ class Spaceship():
     def getAbility(self, i):
         return self.abilityList[i]
 
+    def getMaxHealth(self):
+        return self.maxHealth
+    
+    def getCurrentHealth(self):
+        return self.currentHealth
+
     # Setter Methods
     def takeDamage(self, damage):
         self.currentHealth -= damage
@@ -32,6 +38,9 @@ class Spaceship():
 
     def setBuff(self, buff):
         self.currentBuff = buff
+
+    def setAbilityCooldown(self, i):
+        self.abilityList[i].setCoolDown()
 
     def setAttackDmg(self, damage):
         self.attackDmg = damage

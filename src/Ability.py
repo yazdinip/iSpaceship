@@ -1,12 +1,14 @@
-class Ability():
+class Ability(object):
 
-    def __init__(self, damage, abilityBuff, coolDown):
+    def __init__(self, damage, abilityBuff, coolDown, abilityName, hitChance):
         self.damage = damage
         self.abilityBuff = abilityBuff
         self.coolDown = coolDown
         self.currentCoolDown = 0
+        self.abilityName = abilityName
+        self.hitChance = hitChance
 
-    def getDamage(self):
+    def getAbilityDamage(self):
         return self.damage
 
     def getAbilityBuff(self):
@@ -17,6 +19,12 @@ class Ability():
     
     def getCurrentCoolDown(self):
         return self.currentColdDown
+
+    def getAbilityName(self):
+        return self.abilityName
+    
+    def getHitChance(self):
+        return self.hitChance
 
     def setCoolDown(self):
         self.currentColdDown = self.coolDown
