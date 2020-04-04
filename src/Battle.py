@@ -35,7 +35,7 @@ class Battle():
                 move = random.randrange(0,4)
                 self.attack(move)
         
-    def switchTurns():
+    def switchTurns(self):
         if(self.currentTurn == Turn.PLAYER):
             self.currentTurn = Turn.OPPONENT
         else:
