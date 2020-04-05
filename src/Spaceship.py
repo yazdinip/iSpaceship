@@ -48,3 +48,7 @@ class Spaceship(object):
     def setAttackDmg(self, damage):
         self.attackDmg = damage
 
+    def reduceAllCooldowns(self):
+        for i in range(0, 3):
+            self.abilityList[i].reduceCoolDown()
+
