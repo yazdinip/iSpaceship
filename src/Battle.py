@@ -25,16 +25,28 @@ class Battle():
         
         # Wait until battle is over
         while(self.battleInProgress):
-
+            self.checkStats(self.playerShip)
+            self.checkStats(self.enemyShip)
             # When it is the players turn
             if(self.currentTurn == Turn.PLAYER):
-                # REPLACE RANDOM WITH UI INPUT
+
+                # SELECT A MOVE USING UI
                 move = random.randrange(0,4)
+                while(self.moveIsValid(move, self.playerShip) == False):
+                    # SELECT NEW MOVE IF ABILITY IS ON COOLDOWN
+                    print("Move on cool down!")
+                    move = random.randrange(0,4)
+
                 self.attack(move, self.playerShip, self.enemyShip)
 
             # When it is the computers turn
             else:
+                # SELECT A MOVE USING UI
                 move = random.randrange(0,4)
+                while(self.moveIsValid(move, self.enemyShip) == False):
+                    # SELECT NEW MOVE IF ABILITY IS ON COOLDOWN
+                    print("Move on cool down!")
+                    move = random.randrange(0,4)
                 self.attack(move, self.enemyShip, self.playerShip)
             
             self.switchTurns()
@@ -42,6 +54,12 @@ class Battle():
             self.checkIfBattleEnds()
 
         return self.playerWin
+
+    def moveIsValid(self, move, ship):
+        if(ship.getAbility(move).getCurrentCoolDown() == 0):
+            return True
+        else:
+            return False
         
     def switchTurns(self):
 
@@ -51,10 +69,10 @@ class Battle():
             self.currentTurn = Turn.PLAYER
 
     def checkIfBattleEnds(self):
-        if(self.playerShip.getCurrentHealth() == 0):
+        if(self.playerShip.getCurrentHealth() < 0):
             self.battleInProgress = False
             self.playerWin = True
-        elif(self.enemyShip.getCurrentHealth() == 0):
+        elif(self.enemyShip.getCurrentHealth() < 0):
             self.battleInProgress = False
 
     def reduceCooldowns(self):
@@ -83,6 +101,14 @@ class Battle():
             ship1.setAbilityCoolDown(3)
             print("Using " + self.playerShip.getAbility(3).getAbilityName())
 
+    def checkStats(self, ship):
+        print("Current Health: ", ship.getCurrentHealth())
+        print("Current Buff: ", ship.getCurrentBuff())
+        print("Cooldown 1: " , ship.getAbilityCoolDown(0))
+        print("Cooldown 2: " , ship.getAbilityCoolDown(1))
+        print("Cooldown 3: " , ship.getAbilityCoolDown(2))
+        print("Cooldown 4: " , ship.getAbilityCoolDown(3))
+
 #####################################################################################
 #####################################  TO DO #####################################
 #####################################################################################
@@ -94,14 +120,6 @@ class Battle():
 #####################################################################################
 #####################################  TESTING  #####################################
 #####################################################################################
-
-def checkStats(ship):
-    print("Current Health: ", ship.getCurrentHealth())
-    print("Current Buff: ", ship.getCurrentBuff())
-    print("Cooldown 1: " , ship.getAbilityCoolDown(0))
-    print("Cooldown 2: " , ship.getAbilityCoolDown(1))
-    print("Cooldown 3: " , ship.getAbilityCoolDown(2))
-    print("Cooldown 4: " , ship.getAbilityCoolDown(3))
 
 ability1 = Ability.Ability(50, AbilityBuff.Buff.NOBUFF, 2, "Hyper Cannnon", 0.8)
 ability2 = Ability.Ability(0, AbilityBuff.Buff.HEAL, 3, "Repairs", 1)
@@ -121,27 +139,35 @@ computer = Spaceship.Spaceship(100, 10, abilityList2)
 
 battleMode = Battle(user, computer)
 
-checkStats(user)
-checkStats(computer)
+playerWin = battleMode.battleSequence()
 
-battleMode.attack(0, user, computer)
-checkStats(user)
-checkStats(computer)
+# checkStats(user)
+# checkStats(computer)
 
-battleMode.attack(1, computer, user)
-checkStats(user)
-checkStats(computer)
+# battleMode.attack(0, user, computer)
+# checkStats(user)
+# checkStats(computer)
 
-battleMode.attack(2, user, computer)
-checkStats(user)
-checkStats(computer)
+# battleMode.attack(1, computer, user)
+# checkStats(user)
+# checkStats(computer)
 
-battleMode.attack(3, computer, user)
-checkStats(user)
-checkStats(computer)
+# battleMode.attack(2, user, computer)
+# checkStats(user)
+# checkStats(computer)
 
-checkStats(user)
-checkStats(computer)
+# battleMode.attack(3, computer, user)
+# checkStats(user)
+# checkStats(computer)
 
+# checkStats(user)
+# checkStats(computer)
 
+#def checkStats(ship):
+#     print("Current Health: ", ship.getCurrentHealth())
+#     print("Current Buff: ", ship.getCurrentBuff())
+#     print("Cooldown 1: " , ship.getAbilityCoolDown(0))
+#     print("Cooldown 2: " , ship.getAbilityCoolDown(1))
+#     print("Cooldown 3: " , ship.getAbilityCoolDown(2))
+#     print("Cooldown 4: " , ship.getAbilityCoolDown(3))
 
