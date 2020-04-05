@@ -7,7 +7,7 @@ class Spaceship(object):
         self.maxHealth = maxHealth
         self.currentHealth = maxHealth
 
-        self.currentBuff = AbilityBuff.Buff.NOBUFF
+        self.currentBuff = set()
 
         self.attackDmg = attackDmg
 
@@ -16,9 +16,6 @@ class Spaceship(object):
     # Getter Methods 
     def getAutoDamage(self):
         return self.attackDmg
-    
-    def getCurrentBuff(self):
-        return self.currentBuff
 
     def getAbility(self, i):
         return self.abilityList[i]
@@ -32,21 +29,35 @@ class Spaceship(object):
     def getAbilityCoolDown(self, i):
         return self.abilityList[i].getCurrentCoolDown()
 
+    def getBuffList(self):
+        return self.currentBuff
+
     # Setter Methods
+
+    def removeAllBuffs(self):
+        self.currentBuff = set()
+
+    def removeBuff(self, buff):
+        self.currentBuff.remove(buff)
+
+    def repairDamage(self, amount):
+        # Overhealing is allowed
+        self.currentHealth = self.currentHealth + amount
+
     def takeDamage(self, damage):
         self.currentHealth = self.currentHealth - damage
     
     def resetHealth(self):
         self.currentHealth = self.maxHealth
 
-    def setBuff(self, buff):
-        self.currentBuff = buff
-
     def setAbilityCoolDown(self, i):
         self.abilityList[i].setCoolDown()
 
     def setAttackDmg(self, damage):
         self.attackDmg = damage
+    
+    def addBuff (self, buff):
+        self.currentBuff.add(buff)
 
     def reduceAllCooldowns(self):
         for i in range(0, 3):
