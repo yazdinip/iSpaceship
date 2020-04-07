@@ -1,7 +1,6 @@
 *.synctex.gz
 *.aux
 *.log
-CASCON/Programming4Math.pdf
 *.out
 *.cut
 *.bbl
