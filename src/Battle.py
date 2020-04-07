@@ -72,6 +72,8 @@ class Battle():
         return self.playerWin
 
     def applyBuffs(self, ship):
+        
+        stunned = False
 
         for i in ship.getBuffList():
             if(i[0] == AbilityBuff.Buff.HEAL):
@@ -79,11 +81,17 @@ class Battle():
                 ship.repairDamage(i[1])
             elif(i[0] == AbilityBuff.Buff.STUN):
                 print("Ship is stunned!")
-                ship.removeBuff(i)
                 self.switchTurns()
+                buffRemove = i
+                stunned = True
+                
             elif(i[0] == AbilityBuff.Buff.ONFIRE):
                 print("Ship is on fire!")
                 ship.takeDamage(i[1])
+
+        if(stunned == True):
+            ship.removeBuff(buffRemove)
+            stunned = False
 
     def setBuff(self, buff, ship1, ship2):
         if(buff[0] == AbilityBuff.Buff.HEAL):
@@ -93,6 +101,8 @@ class Battle():
         elif(buff[0] == AbilityBuff.Buff.STUN):
             ship2.addBuff(buff)
         elif(buff[0] == AbilityBuff.Buff.ONFIRE):
+            # On fire removes all debuffs
+            ship1.removeAllBuffs()
             ship2.addBuff(buff)
 
     def moveIsValid(self, move, ship):
@@ -169,15 +179,15 @@ class Battle():
 #####################################  TESTING  #####################################
 #####################################################################################
 
-ability1 = Ability.Ability(50, (AbilityBuff.Buff.NOBUFF,0, 0), 2, "Hyper Cannnon", 0.8)
-ability2 = Ability.Ability(0, (AbilityBuff.Buff.HEAL,30,2), 3, "Repairs", 1)
-ability3 = Ability.Ability(20, (AbilityBuff.Buff.STUN,0,2), 4, "Stun Move", 0.5)
-ability4 = Ability.Ability(30, (AbilityBuff.Buff.ONFIRE,10,2), 4, "Heat Seeking Missles", 1)
+ability1 = Ability.Ability(50, (AbilityBuff.Buff.NOBUFF,0, 0), 2, "Hyper Cannnon", 0.8, 50)
+ability2 = Ability.Ability(0, (AbilityBuff.Buff.HEAL,30,2), 3, "Repairs", 1, 50)
+ability3 = Ability.Ability(20, (AbilityBuff.Buff.STUN,0,2), 4, "Stun Move", 0.5, 50)
+ability4 = Ability.Ability(30, (AbilityBuff.Buff.ONFIRE,10,2), 4, "Heat Seeking Missles", 1, 50)
 
-ability5 = Ability.Ability(50, (AbilityBuff.Buff.NOBUFF,0,0), 2, "Hyper Cannnon", 0.8)
-ability6 = Ability.Ability(0, (AbilityBuff.Buff.HEAL,30,2), 3, "Repairs", 1)
-ability7 = Ability.Ability(20, (AbilityBuff.Buff.STUN,0,2), 4, "Stun Move", 0.5)
-ability8 = Ability.Ability(30, (AbilityBuff.Buff.ONFIRE,10,2), 4, "Heat Seeking Missles", 1)
+ability5 = Ability.Ability(50, (AbilityBuff.Buff.NOBUFF,0,0), 2, "Hyper Cannnon", 0.8, 50)
+ability6 = Ability.Ability(0, (AbilityBuff.Buff.HEAL,30,2), 3, "Repairs", 1, 50)
+ability7 = Ability.Ability(20, (AbilityBuff.Buff.STUN,0,2), 4, "Stun Move", 0.5, 50)
+ability8 = Ability.Ability(30, (AbilityBuff.Buff.ONFIRE,10,2), 4, "Heat Seeking Missles", 1, 50)
 
 abilityList = [ability1, ability2, ability3, ability4]
 abilityList2 = [ability5, ability6, ability7, ability8]

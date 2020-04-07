@@ -14,6 +14,7 @@ class Spaceship(object):
         self.abilityList = abilityList
 
     # Getter Methods 
+
     def getAutoDamage(self):
         return self.attackDmg
 
