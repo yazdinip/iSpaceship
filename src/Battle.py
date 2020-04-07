@@ -24,10 +24,9 @@ class Battle():
     def battleSequence(self):
 
         turnCounter = 0
-        
+        #g = input("Press Enter to Start Battle ") 
         # Wait until battle is over
         while(self.battleInProgress):
-
             # Code used to test in console
             turnCounter = turnCounter + 1
             print("Turn " + str(turnCounter) + " " + str(self.currentTurn))
@@ -43,10 +42,11 @@ class Battle():
 
             # When it is the players turn
             if(self.currentTurn == Turn.PLAYER):
+                g = input("Enter your move: ") 
                 # First reduce cooldowns
                 self.reduceCooldowns(self.playerShip)
                 # SELECT A MOVE USING UI
-                move = random.randrange(0,4)
+                move = g
                 while(self.moveIsValid(move, self.playerShip) == False):
                     # SELECT NEW MOVE IF ABILITY IS ON COOLDOWN
                     print("Move on cool down!")
@@ -129,6 +129,12 @@ class Battle():
 
         ship.reduceAllCooldowns()
 
+    def getEnemySpaceship(self):
+        return self.enemyShip
+
+    def getPlayerSpaceship(self):
+        return self.playerShip
+
     def attack(self, move, ship1, ship2):
         if(move == 0):
             ship2.takeDamage(ship1.getAutoDamage())
@@ -179,23 +185,23 @@ class Battle():
 #####################################  TESTING  #####################################
 #####################################################################################
 
-ability1 = Ability.Ability(50, (AbilityBuff.Buff.NOBUFF,0, 0), 2, "Hyper Cannnon", 0.8, 50)
-ability2 = Ability.Ability(0, (AbilityBuff.Buff.HEAL,30,2), 3, "Repairs", 1, 50)
-ability3 = Ability.Ability(20, (AbilityBuff.Buff.STUN,0,2), 4, "Stun Move", 0.5, 50)
-ability4 = Ability.Ability(30, (AbilityBuff.Buff.ONFIRE,10,2), 4, "Heat Seeking Missles", 1, 50)
+# ability1 = Ability.Ability(50, (AbilityBuff.Buff.NOBUFF,0, 0), 2, "Hyper Cannnon", 0.8, 50)
+# ability2 = Ability.Ability(0, (AbilityBuff.Buff.HEAL,30,2), 3, "Repairs", 1, 50)
+# ability3 = Ability.Ability(20, (AbilityBuff.Buff.STUN,0,2), 4, "Stun Move", 0.5, 50)
+# ability4 = Ability.Ability(30, (AbilityBuff.Buff.ONFIRE,10,2), 4, "Heat Seeking Missles", 1, 50)
 
-ability5 = Ability.Ability(50, (AbilityBuff.Buff.NOBUFF,0,0), 2, "Hyper Cannnon", 0.8, 50)
-ability6 = Ability.Ability(0, (AbilityBuff.Buff.HEAL,30,2), 3, "Repairs", 1, 50)
-ability7 = Ability.Ability(20, (AbilityBuff.Buff.STUN,0,2), 4, "Stun Move", 0.5, 50)
-ability8 = Ability.Ability(30, (AbilityBuff.Buff.ONFIRE,10,2), 4, "Heat Seeking Missles", 1, 50)
+# ability5 = Ability.Ability(50, (AbilityBuff.Buff.NOBUFF,0,0), 2, "Hyper Cannnon", 0.8, 50)
+# ability6 = Ability.Ability(0, (AbilityBuff.Buff.HEAL,30,2), 3, "Repairs", 1, 50)
+# ability7 = Ability.Ability(20, (AbilityBuff.Buff.STUN,0,2), 4, "Stun Move", 0.5, 50)
+# ability8 = Ability.Ability(30, (AbilityBuff.Buff.ONFIRE,10,2), 4, "Heat Seeking Missles", 1, 50)
 
-abilityList = [ability1, ability2, ability3, ability4]
-abilityList2 = [ability5, ability6, ability7, ability8]
+# abilityList = [ability1, ability2, ability3, ability4]
+# abilityList2 = [ability5, ability6, ability7, ability8]
 
-user = Spaceship.Spaceship(100, 10, abilityList)
-computer = Spaceship.Spaceship(100, 10, abilityList2)
+# user = Spaceship.Spaceship(100, 10, abilityList)
+# computer = Spaceship.Spaceship(100, 10, abilityList2)
 
-battleMode = Battle(user, computer)
+# battleMode = Battle(user, computer)
 
-playerWin = battleMode.battleSequence()
+# playerWin = battleMode.battleSequence()
 

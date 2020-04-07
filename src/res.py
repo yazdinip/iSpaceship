@@ -21,11 +21,11 @@ class UI(Enum):
     SHOP = 3
     BATTLE = 4
 
-# class Profile(Enum):
-#     PROFILE_1 = 1   # defult
-#     PROFILE_2 = 2
-#     PROFILE_3 = 3
-#     PROFILE_4 = 4
+class Profile(Enum):
+    PROFILE_1 = 1   # defult
+    PROFILE_2 = 2
+    PROFILE_3 = 3
+    PROFILE_4 = 4
 
 class Screen:
     def __init__(self, display):
