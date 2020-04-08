@@ -1,4 +1,4 @@
-import AbilityBuff
+from res import Buff
 import Ability
 
 class Shop():
@@ -19,14 +19,25 @@ class Shop():
 
         self.abilityIndex = 0
 
-    def shopSequence(self):
-        exit = False
+    #return (self.itemListA, self.itemListB, self.currency, self.abilityList)
 
-        while(exit == False):
-            ## NEED UI ELEMENTS
-            break
-            
-        return (self.itemListA, self.itemListB, self.currency, self.abilityList)
+    def getCurrentA(self):
+        return self.currentDisplayedAItem
+
+    def getCurrentB(self):
+        return self.currentDisplayedBItem
+
+    def getCurrency(self):
+        return self.currency
+
+    def getAbilityList(self):
+        return self.abilityList
+
+    def getItemListA(self):
+        return self.itemListA
+    
+    def getItemListB(self):
+        return self.itemListB
 
     def nextA(self):
         if(self.indexA != len(self.itemListA)-1):
@@ -91,20 +102,20 @@ class Shop():
     @staticmethod
     def getAbilities():
 
-        ability1 = Ability.Ability(50, (AbilityBuff.Buff.NOBUFF,0, 0), 2, "Hyper Cannnon", 0.8, 50)
-        ability2 = Ability.Ability(0, (AbilityBuff.Buff.HEAL,30,2), 3, "Repairs", 1, 50)
-        ability3 = Ability.Ability(20, (AbilityBuff.Buff.STUN,0,2), 4, "Stun Move", 0.5, 50)
-        ability4 = Ability.Ability(30, (AbilityBuff.Buff.ONFIRE,10,2), 4, "Heat Seeking Missles", 1, 50)
+        ability1 = Ability.Ability(50, (Buff.NOBUFF,0, 0), 2, "Hyper Cannnon", 0.8, 50)
+        ability2 = Ability.Ability(0, (Buff.HEAL,30,2), 3, "Repairs", 1, 50)
+        ability3 = Ability.Ability(20, (Buff.STUN,0,2), 4, "Stun Move", 0.5, 50)
+        ability4 = Ability.Ability(30, (Buff.ONFIRE,10,2), 4, "Heat Seeking Missles", 1, 50)
 
-        ability5 = Ability.Ability(50, (AbilityBuff.Buff.NOBUFF,0,0), 2, "YESSIR", 0.8, 50)
-        ability6 = Ability.Ability(0, (AbilityBuff.Buff.HEAL,30,2), 3, "ESKEGIT", 1, 500)
-        ability7 = Ability.Ability(20, (AbilityBuff.Buff.STUN,0,2), 4, "YEET", 0.5, 50)
-        ability8 = Ability.Ability(30, (AbilityBuff.Buff.ONFIRE,10,2), 4, "LMAO", 1, 50)
+        ability5 = Ability.Ability(50, (Buff.NOBUFF,0,0), 2, "YESSIR", 0.8, 50)
+        ability6 = Ability.Ability(0, (Buff.HEAL,30,2), 3, "ESKEGIT", 1, 500)
+        ability7 = Ability.Ability(20, (Buff.STUN,0,2), 4, "YEET", 0.5, 50)
+        ability8 = Ability.Ability(30, (Buff.ONFIRE,10,2), 4, "LMAO", 1, 50)
 
-        ability9 = Ability.Ability(50, (AbilityBuff.Buff.NOBUFF,0,0), 2, "BRUH", 0.8, 50)
-        ability10 = Ability.Ability(0, (AbilityBuff.Buff.HEAL,30,2), 3, "NAWWW", 1, 500)
-        ability11 = Ability.Ability(20, (AbilityBuff.Buff.STUN,0,2), 4, "JHEEEZ", 0.5, 50)
-        ability12 = Ability.Ability(30, (AbilityBuff.Buff.ONFIRE,10,2), 4, "BLESSED", 1, 50)
+        ability9 = Ability.Ability(50, (Buff.NOBUFF,0,0), 2, "BRUH", 0.8, 50)
+        ability10 = Ability.Ability(0, (Buff.HEAL,30,2), 3, "NAWWW", 1, 500)
+        ability11 = Ability.Ability(20, (Buff.STUN,0,2), 4, "JHEEEZ", 0.5, 50)
+        ability12 = Ability.Ability(30, (Buff.ONFIRE,10,2), 4, "BLESSED", 1, 50)
 
         allAbilities = [ability1, ability2, ability3, ability4, ability5, ability6, ability7, ability8, ability9, ability10, ability11, ability12]
         return  (allAbilities)

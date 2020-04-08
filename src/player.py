@@ -19,7 +19,7 @@ class Player(object):
 
         self.abilityList = [ability1, ability2, ability3, ability4]
 
-        self.missionList = []
+        self.missionNum = 0
 
         self.abilityListA = []
         self.abilityListB = []
@@ -49,7 +49,7 @@ class Player(object):
     def getSpaceShip(self):
         return self.playerSpaceShip
 
-    def getMissionList(self):
+    def getMissionNum(self):
         return self.missionList
 
     # Setters
@@ -75,5 +75,5 @@ class Player(object):
     def setSpaceShip (self, spaceship):
         self.playerSpaceShip = spaceship
     
-    def setMissionList(self, missionList):
-        self.missionList = missionList
+    def setMissionNum(self, missionNum):
+        self.missionNum= missionNum
