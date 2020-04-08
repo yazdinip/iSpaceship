@@ -47,7 +47,7 @@ def main():
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if ui == ui.LOAD_PROFILE:
-                    ui = loadUI.checkForComponentClicks(ui)
+                    ui, profile = loadUI.checkForComponentClicks(ui, profile)
                     hubUI.updateProfile(profile)
                 elif ui == ui.HUB:
                     ui = hubUI.checkForComponentClicks(ui)

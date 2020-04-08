@@ -27,26 +27,32 @@ class BattleScreen(Screen):
         self.ability2 = Button(self.playerSpaceship.getAbility(1).getAbilityName(), 300, 500, 200, 50)
         self.ability3 = Button(self.playerSpaceship.getAbility(2).getAbilityName(), 50, 400, 200, 50)
         self.ability4 = Button(self.playerSpaceship.getAbility(3).getAbilityName(), 300, 400, 200, 50)
-        self.textWelcome = Text("Battle!", 200, 100, WHITE, "Arial", 50)
+        self.abilityString = ""
         self.drawComponents()
-
-        
-
 
         # This is where battle gets initailized 
         
 
-
     def drawComponents(self):
         
 
-        self.textWelcome = Text("Battle!", 300, 25, WHITE, "Arial", 50)
+        self.textWelcome = Text("Battle!", 450, 25, WHITE, "Arial", 50)
 
-        self.playerHealth = Text("Health: " + str(self.player.getSpaceShip().getCurrentHealth()),450, 350, WHITE, "Arial", 25)
+
+        self.playerHealth = Text("Player Health: " + str(self.player.getSpaceShip().getCurrentHealth()),425, 325, WHITE, "Arial", 25)
+        self.playerBuff = Text("Player Buff: " + str(len(self.player.getSpaceShip().getBuffList())),425, 350, WHITE, "Arial", 25)
+        self.enemyHealth = Text("Enemy Health: " + str(self.enemySpaceship.getCurrentHealth()),275, 200, WHITE, "Arial", 20)
+        self.enemyBuff = Text("Enemy Buff: " + str(len(self.enemySpaceship.getBuffList())),275, 225, WHITE, "Arial", 20)
+        self.chosneAbility = Text(self.abilityString,450, 200, WHITE, "Arial", 20)
+
 
         self.components.clear()
         self.components.append(self.textWelcome)
         self.components.append(self.playerHealth)
+        self.components.append(self.playerBuff)
+        self.components.append(self.enemyHealth)
+        self.components.append(self.enemyBuff)
+        self.components.append(self.chosneAbility)
 
         self.components.append(self.ability1)
         self.components.append(self.ability2)
@@ -121,14 +127,23 @@ class BattleScreen(Screen):
  
     def checkForComponentClicks(self, ui):
         if self.ability1.isBeingClicked(ui) == True:
-                # g = input("Enter your moveT ") rue:
-            pass
-        # if self.ability2.isBeingClicked(ui) == True:
-        #     # Do something
-        # if self.abilic) == True:
-        #     # Do something
-        # if self.ability4.isBeingClicked(ui) == True:
-        #     # Do something
+        #g = input("Enter your moveT ") rue:
+            self.abilityString = "Chosen Ability: " + self.playerSpaceship.getAbility(0).getAbilityName()
+            self.drawComponents()
+            
+        if self.ability2.isBeingClicked(ui) == True:
+            self.abilityString = "Chosen Ability: " + self.playerSpaceship.getAbility(1).getAbilityName()
+            self.drawComponents()
+
+        if self.abilic) == True:
+            self.abilityString = "Chosen Ability: " + self.playerSpaceship.getAbility(2).getAbilityName()
+            self.drawComponents()
+
+        if self.ability4.isBeingClicked(ui) == True:
+            self.abilityString = "Chosen Ability: " + self.playerSpaceship.getAbility(3).getAbilityName()
+            self.drawComponents()
+
+        return ui
 
     def updateProfile(self, profile):
         self.profile = profile
