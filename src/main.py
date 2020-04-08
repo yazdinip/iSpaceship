@@ -51,6 +51,8 @@ def main():
     shopUI = ShopUI(display, player)
 
     beginButton = Button("Begin Battle", 650, 100, 100, 50) # For making a new battle
+    textMoney = Text("Currency: " + str(player.getCurrency()), 350, 475, WHITE, "Arial", 30)
+    textMission = Text("Current Mission: " + str(player.getMissionNum()), 350, 510, WHITE, "Arial", 30)
     playerSpaceship = player.getSpaceShip()
     enemySpaceship = aiShip
     
@@ -100,6 +102,8 @@ def main():
                             battleUI = BattleScreen(display, Story.enemy3, player, ui)
 
                         #battleUI = BattleScreen(display, aiShip, player, ui)
+                        textMoney = Text("Currency: " + str(player.getCurrency()), 350, 475, WHITE, "Arial", 30)
+                        textMission = Text("Current Mission: " + str(player.getMissionNum()), 350, 510, WHITE, "Arial", 30)
 
                         
 
@@ -116,8 +120,9 @@ def main():
             loadUI.draw()
         elif ui == ui.HUB:
             hubUI.draw()
+            hubUI.components.append(textMoney)
+            hubUI.components.append(textMission)
         elif ui == ui.SHOP:
-            print("hllo")
             display.fill(BLACK)
         # Draw the space background
             background = pygame.image.load('assets/img/background_shop.png')
@@ -129,6 +134,7 @@ def main():
             battleUI.draw()
             battleUI.drawComponents()
             battleUI.components.append(beginButton)
+
             
 
         pygame.display.update()
