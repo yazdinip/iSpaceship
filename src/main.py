@@ -5,6 +5,8 @@ from hub import Hub
 from battleScreen import BattleScreen
 from Spaceship import Spaceship
 from player import Player
+from Shop import Shop
+from ShopUI import ShopUI
 
 def main():
     global running, display
@@ -39,6 +41,13 @@ def main():
     hubUI = Hub(display, battleUI)
     loadUI = LoadProfile(display, hubUI)
 
+    allAbilities = Shop.getAbilities()
+    abilityListA = allAbilities[0:4]
+    abilityListB = allAbilities[4:8]
+    abilityList = allAbilities[8:]
+    currency = 200
+    shopUI = ShopUI(display, Shop(abilityListA, abilityListB, currency, abilityList))
+    
     # Game loop
     while running:
         # deltaTime = clock.tick()
@@ -51,8 +60,10 @@ def main():
                     hubUI.updateProfile(profile)
                 elif ui == ui.HUB:
                     ui = hubUI.checkForComponentClicks(ui)
-                # elif ui == ui.SHOP:
-                #     ui = shopScreen.checkForComponentClicks(ui)
+                    #print("hello")
+                    shopUI.init()
+                elif ui == ui.SHOP:
+                     ui = shopUI.checkForComponentClicks(ui)
                 elif ui == ui.BATTLE:
                     ui = battleUI.checkForComponentClicks(ui)
 
@@ -69,11 +80,16 @@ def main():
             loadUI.draw()
         elif ui == ui.HUB:
             hubUI.draw()
-        # elif ui == ui.SHOP:
-        #     shopScreen.update(deltaTime)
-        #     shopScreen.draw()
+        elif ui == ui.SHOP:
+            shopUI.draw()
+            print("hllo")
+           # display.fill(BLACK)
+        # Draw the space background
+           # background = pygame.image.load('assets/img/background_shop.png')
+           # display.blit(background, (0, 0))
+             #   shopScreen.update(deltaTime)
+           # shopUI.init()
         elif ui == ui.BATTLE:
-        #     shopScreen.update(deltaTime)
             battleUI.draw()
             battleUI.drawComponents()
             
