@@ -1,9 +1,10 @@
 from res import *
 
 class LoadProfile(Screen):
-    def __init__(self, display):
+    def __init__(self, display, hubUI):
         Screen.__init__(self, display)
 
+        self.hubUI = hubUI
         self.init()
     
     def init(self):
@@ -25,24 +26,24 @@ class LoadProfile(Screen):
         self.components.append(self.exit)
         self.components.append(self.text)
     
-    def checkForComponentClicks(self, ui, profile):
+    def checkForComponentClicks(self, ui):
         if self.profile1.isBeingClicked(ui) == True:
             ui = ui.HUB
-            profile = profile.PROFILE_1
+            self.hubUI.updateProfile(Profile.PROFILE_1)
 
         if self.profile2.isBeingClicked(ui) == True:
             ui = ui.HUB
-            profile = profile.PROFILE_2
+            self.hubUI.updateProfile(Profile.PROFILE_2)
 
         if self.profile3.isBeingClicked(ui) == True:
             ui = ui.HUB
-            profile = profile.PROFILE_3
+            self.hubUI.updateProfile(Profile.PROFILE_3)
 
         if self.profile4.isBeingClicked(ui) == True:
             ui = ui.HUB
-            profile = profile.PROFILE_4
+            self.hubUI.updateProfile(Profile.PROFILE_4)
 
         if self.exit.isBeingClicked(ui) == True:
             raise SystemExit
 
-        return ui, profile
+        return ui

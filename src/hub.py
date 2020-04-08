@@ -2,9 +2,10 @@ from res import *
 import pygame
 
 class Hub(Screen):
-    def __init__(self, display):
+    def __init__(self, display, battleUI):
         Screen.__init__(self, display)
 
+        self.battleUI = battleUI
         self.profile = Profile.PROFILE_1 # Defult value
         self.init()
     
@@ -40,4 +41,6 @@ class Hub(Screen):
 
     def updateProfile(self, profile):
         self.profile = profile
+        self.player = loadFromFile(profile)
+        self.battleUI.updatePlayer(self.player)
         self.init()

@@ -4,6 +4,7 @@ from loadprofile import LoadProfile
 from hub import Hub
 from battleScreen import BattleScreen
 from Spaceship import Spaceship
+from player import Player
 
 def main():
     global running, display
@@ -19,8 +20,7 @@ def main():
     profile = Profile.PROFILE_1
 
     # Create screen
-    loadUI = LoadProfile(display)
-    hubUI = Hub(display)
+
     # shopUI = Shop(display, ... )
 
     list1, list2 = getTestList()
@@ -28,6 +28,8 @@ def main():
     aiShip = Spaceship(50,5,list2)
 
     battleUI = BattleScreen(display, aiShip, playerShip)
+    hubUI = Hub(display, battleUI)
+    loadUI = LoadProfile(display, hubUI)
 
     # Game loop
     while running:
@@ -37,8 +39,7 @@ def main():
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if ui == ui.LOAD_PROFILE:
-                    ui, profile = loadUI.checkForComponentClicks(ui, profile)
-                    battleUI = BattleScreen(display, aiShip, playerShip)
+                    ui = loadUI.checkForComponentClicks(ui)
                     hubUI.updateProfile(profile)
                 elif ui == ui.HUB:
                     ui = hubUI.checkForComponentClicks(ui)

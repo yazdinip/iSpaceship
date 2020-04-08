@@ -111,11 +111,10 @@ def getTestList():
     return abilityList, abilityList2
 
 
-def saveToFile(Player, Profile):
-    filehandler = open('assets/saves/' + str(Profile.name) + ".data", 'wb') 
-    pickle.dump(Player, filehandler)
-
-
 def loadFromFile(Profile):
     filehandler = open("assets/saves/" + str(Profile.name) + ".data", 'rb') 
     return pickle.load(filehandler)
+
+def saveToFile(Player, Profile):
+    filehandler = open('assets/saves/' + str(Profile.name) + ".data", 'wb') 
+    pickle.dump(Player, filehandler)

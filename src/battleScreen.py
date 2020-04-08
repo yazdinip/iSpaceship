@@ -9,7 +9,7 @@ from Ability import Ability
 
 
 class BattleScreen(Screen):
-    def __init__(self, display, enemySpaceship, playerSpaceship):
+    def __init__(self, display, enemySpaceship, player):
         Screen.__init__(self, display)
 
         self.playerSpaceship = playerSpaceship
@@ -40,40 +40,40 @@ class BattleScreen(Screen):
         self.components.append(self.ability2)
         self.components.append(self.ability3)
         self.components.append(self.ability4)
-        # self.drawPlayer(self.display, 1, 100, 100)
-        playerLvl1 = pygame.image.load('assets/img/enemy.png')
-        self.display.blit(playerLvl1, (0, 0))
-        #self.display.update(self.display.blit(playerLvl1, (100, 100)))
+        
+        # playerLvl1 = pygame.image.load('assets/img/enemy.png')
+        # self.display.blit(playerLvl1, (0, 0))
+        self.drawPlayer(0,0)
+        
         
 
-    # def drawPlayer(self, display, player, x, y):
-    #     if player == 1:
-    #         playerLvl1 = pygame.image.load('assets/SpaceshipAssetEnemy/enemy-attack.png')
-    #         self.display.blit(playerLvl1, (x, y))
+     def drawPlayer(self, x, y):
+        if self.player. == 1:
+            playerLvl1 = pygame.image.load('assets/SpaceshipAssetEnemy/enemy-attack.png')
+            self.display.blit(playerLvl1, (x, y))
+        if player == 2:
+            playerLvl2 = pygame.image.load('assets/PlayerSpaceship/Lvl2.png')
+            self.display.blit(playerLvl2, (x, y))
+        if player == 3:
+            playerLvl3 = pygame.image.load('assets/PlayerSpaceship/Lvl3.png')
+            self.display.blit(playerLvl3, (x, y))
+        if player == 4:
+            playerLvl4 = pygame.image.load('assets/PlayerSpaceship/Lvl3.png')
+            self.display.blit(playerLvl4, (x, y))
 
-    #     if player == 2:
-    #         playerLvl2 = pygame.image.load('assets/PlayerSpaceship/Lvl2.png')
-    #         self.display.blit(playerLvl2, (x, y))
-    #     if player == 3:
-    #         playerLvl3 = pygame.image.load('assets/PlayerSpaceship/Lvl3.png')
-    #         self.display.blit(playerLvl3, (x, y))
-    #     if player == 4:
-    #         playerLvl4 = pygame.image.load('assets/PlayerSpaceship/Lvl3.png')
-    #         self.display.blit(playerLvl4, (x, y))
-
-    # def drawEnemy(player, x, y):
-    #     if player == 1:
-    #         enemyLvl1 = pygame.image.load(random.choice(os.listdir("assets/GraphicsAssetSpaceships/PNG/Spaceships/Lvl1//")))
-    #         display.blit(enemyLvl1, (x, y))
-    #     if player == 2:
-    #         enemyLvl2 = pygame.image.load(random.choice(os.listdir("assets/GraphicsAssetSpaceships/PNG/Spaceships/Lvl2//")))
-    #         display.blit(enemyLvl2, (x, y))
-    #     if player == 3:
-    #         enemyLvl3 = pygame.image.load(random.choice(os.listdir("assets/GraphicsAssetSpaceships/PNG/Spaceships/Lvl3//")))
-    #         display.blit(enemyLvl3, (x, y))
-    #     if player == 4:
-    #         enemyLvl4 = pygame.image.load(random.choice(os.listdir("assets/GraphicsAssetSpaceships/PNG/Spaceships/Lvl4//")))
-    #         display.blit(enemyLvl4, (x, y))      
+    def drawEnemy(player, x, y):
+        if player == 1:
+            enemyLvl1 = pygame.image.load(random.choice(os.listdir("assets/GraphicsAssetSpaceships/PNG/Spaceships/Lvl1//")))
+            display.blit(enemyLvl1, (x, y))
+        if player == 2:
+            enemyLvl2 = pygame.image.load(random.choice(os.listdir("assets/GraphicsAssetSpaceships/PNG/Spaceships/Lvl2//")))
+            display.blit(enemyLvl2, (x, y))
+        if player == 3:
+            enemyLvl3 = pygame.image.load(random.choice(os.listdir("assets/GraphicsAssetSpaceships/PNG/Spaceships/Lvl3//")))
+            display.blit(enemyLvl3, (x, y))
+        if player == 4:
+            enemyLvl4 = pygame.image.load(random.choice(os.listdir("assets/GraphicsAssetSpaceships/PNG/Spaceships/Lvl4//")))
+            display.blit(enemyLvl4, (x, y))      
         
 
     def checkForComponentClicks(self, ui):
@@ -96,3 +96,6 @@ class BattleScreen(Screen):
 
     def getPlayerSpaceshipself():
         return self.playerSpaceship
+
+    def updatePlayer(player):
+        self.player = player
