@@ -3,21 +3,20 @@ import Ability
 
 class Shop():
 
-    def __init__(self, itemListA, itemListB, currency, abilityList):
+    #itemListA, itemListB, currency, abilityList
 
-        self.itemListA = itemListA
-        self.itemListB = itemListB
-        self.currency = currency
-        self.abilityList = abilityList
+    def __init__(self, player):
 
-        self.abilitySwap = 0
+        # self.player = player
 
-        self.currentDisplayedAItem = itemListA[0]
-        self.indexA = 0
-        self.currentDisplayedBItem = itemListB[0]
-        self.indexB = 0
+        # self.abilitySwap = 0
 
-        self.abilityIndex = 0
+        # self.currentDisplayedAItem = itemListA[0]
+        # self.indexA = 0
+        # self.currentDisplayedBItem = itemListB[0]
+        # self.indexB = 0
+
+        # self.abilityIndex = 0
         self.counter = 0
 
     #return (self.itemListA, self.itemListB, self.currency, self.abilityList)
@@ -69,7 +68,7 @@ class Shop():
             self.indexB += 1
 
     def prevB(self):
-        if(self.indexB != 0):
+            self.currentDisplayedAItem = self.itemListA[0]
             self.currentDisplayedBItem = self.itemListB[self.indexB-1]
             self.indexB += -1
 

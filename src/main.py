@@ -8,6 +8,8 @@ from player import Player
 from Shop import Shop
 from ShopUI import ShopUI
 
+import Story
+
 def main():
     global running, display
 
@@ -22,11 +24,11 @@ def main():
     profile = Profile.PROFILE_1
 
     ##  Uncomment to generate new profile data
-    # player1 = Player()
-    # saveToFile(player1, Profile.PROFILE_1)
-    # saveToFile(player1, Profile.PROFILE_2)
-    # saveToFile(player1, Profile.PROFILE_3)
-    # saveToFile(player1, Profile.PROFILE_4)
+    player1 = Player()
+    saveToFile(player1, Profile.PROFILE_1)
+    saveToFile(player1, Profile.PROFILE_2)
+    saveToFile(player1, Profile.PROFILE_3)
+    saveToFile(player1, Profile.PROFILE_4)
 
     # Create screen
 
@@ -37,16 +39,20 @@ def main():
     aiShip = Spaceship(50,5,list2)
 
     player = loadFromFile(profile)
-    battleUI = BattleScreen(display, aiShip, player, ui)
-    hubUI = Hub(display, battleUI)
+    battleUI = BattleScreen(display, Story.enemy1, player, ui)
+    hubUI = Hub(display, battleUI, player)
     loadUI = LoadProfile(display, hubUI)
+    
+    abilityListA = Story.abilityA
+    abilityListB = Story.abilityB
+    abilityList = player.abilityList
+    currency = player.getCurrency()
+    
+    shopUI = ShopUI(display, player)
 
-    allAbilities = Shop.getAbilities()
-    abilityListA = allAbilities[0:4]
-    abilityListB = allAbilities[4:8]
-    abilityList = allAbilities[8:]#4 equipped abilities
-    currency = 200
-    shopUI = ShopUI(display, Shop(abilityListA, abilityListB, currency, abilityList))
+    beginButton = Button("Begin Battle", 650, 100, 100, 50) # For making a new battle
+    playerSpaceship = player.getSpaceShip()
+    enemySpaceship = aiShip
     
     # Game loop
     while running:
@@ -60,12 +66,42 @@ def main():
                     hubUI.updateProfile(profile)
                 elif ui == ui.HUB:
                     ui = hubUI.checkForComponentClicks(ui)
+                    hubUI.init()
                     #print("hello")
                 elif ui == ui.SHOP:
                      ui = shopUI.checkForComponentClicks(ui)
                      shopUI.init()
                 elif ui == ui.BATTLE:
                     ui = battleUI.checkForComponentClicks(ui)
+
+                    if beginButton.isBeingClicked(ui) == True:
+                        player.resetHealth()
+                        result = battleUI.newBattle(enemySpaceship, player)
+                        if result == True:
+                            # self.victoryString = "Victory!"
+                            player.setMissionNum()
+                            player.addCurrency(1000)
+
+                            
+                        elif result == False:
+                            # self.victoryString = "Humiliation!"
+                            player.resetMissionNum()
+                            player.removeCurrency(500)
+                            
+                        # self.drawComponents()
+                        print("battle result = " + str(result))
+                        if(player.getMissionNum() == 0):
+                            battleUI = BattleScreen(display, Story.enemy1, player, ui)
+                        elif(player.getMissionNum() == 1):
+                            battleUI = BattleScreen(display, Story.enemy2, player, ui)
+                        elif(player.getMissionNum() == 2):
+                            battleUI = BattleScreen(display, Story.enemy3, player, ui)
+                        elif(player.getMissionNum() == 3):
+                            battleUI = BattleScreen(display, Story.enemy3, player, ui)
+
+                        #battleUI = BattleScreen(display, aiShip, player, ui)
+
+                        
 
             if event.type == pygame.QUIT:
                 running = False
@@ -92,6 +128,7 @@ def main():
         elif ui == ui.BATTLE:
             battleUI.draw()
             battleUI.drawComponents()
+            battleUI.components.append(beginButton)
             
 
         pygame.display.update()

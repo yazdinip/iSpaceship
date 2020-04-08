@@ -1,30 +1,34 @@
 import Ability
 from res import *
+import Story
 
 import Spaceship
 
 class Player(object):
     def __init__(self):
-
-        ability1 = Ability(50, (Buff.NOBUFF,0, 0), 2, "Cannnon", 0.8, 20)
-        ability2 = Ability(0, (Buff.HEAL,30,2), 3, "Repairs", 1, 50)
-        ability3 = Ability(20, (Buff.STUN,0,2), 4, "Stun Move", 0.5, 50)
-        ability4 = Ability(30, (Buff.ONFIRE,10,2), 4, "Heat Seeking Missles", 1, 50)
-
+        
         self.currency = 500
 
         self.maxHealth = 100
 
         self.attackDmg = 10
 
-        self.abilityList = [ability1, ability2, ability3, ability4]
+        self.abilityList = Story.playerAbilityList
 
         self.missionNum = 0
 
-        self.abilityListA = []
-        self.abilityListB = []
-
+        self.itemListA = Story.abilityA
+        self.itemListB = Story.abilityB
         self.playerSpaceShip = Spaceship.Spaceship(self.maxHealth, self.attackDmg, self.abilityList)
+
+        self.abilitySwap = 0
+
+        self.currentDisplayedAItem = self.itemListA[0]
+        self.indexA = 0
+        self.currentDisplayedBItem = self.itemListB[0]
+        self.indexB = 0
+
+        self.abilityIndex = 0
 
     # Getters
 
@@ -52,8 +56,6 @@ class Player(object):
     def getMissionNum(self):
         return self.missionNum
     
-
-
     # Setters
 
     def addCurrency(self, amount):
@@ -70,6 +72,9 @@ class Player(object):
     
     def setAbiltiyListA(self, abilityListA):
         self.abilityListA = abilityListA
+    
+    def setCurrency(self, currency):
+        self.currency = currency
 
     def setAbiltiyListB(self, abilityListB):
         self.abilityListB = abilityListB
@@ -82,3 +87,77 @@ class Player(object):
 
     def resetMissionNum(self):
         self.missionNum = 0 
+
+    def getCurrentA(self):
+        return self.currentDisplayedAItem
+
+    def getCurrentB(self):
+        return self.currentDisplayedBItem
+
+    def resetHealth(self):
+        self.playerSpaceShip.resetHealth()
+
+    def getItemListA(self):
+        return self.itemListA
+    
+    def getItemListB(self):
+        return self.itemListB
+
+    def getAbilityIndex(self):
+        return self.abilityIndex
+    def setAbilityIndex(self, n):
+        self.abilityIndex = n
+
+    def nextA(self):
+        if(self.indexA != len(self.itemListA)-1):
+            self.currentDisplayedAItem = self.itemListA[self.indexA+1]
+            self.indexA += 1
+
+    def prevA(self):
+        if(self.indexA != 0):
+            self.currentDisplayedAItem = self.itemListA[self.indexA-1]
+            self.indexA += -1
+
+    def nextB(self):
+        if(self.indexB != len(self.itemListB)-1):
+            self.currentDisplayedBItem = self.itemListB[self.indexB+1]
+            self.indexB += 1
+
+    def prevB(self):
+        if(self.indexB != 0):
+            self.currentDisplayedBItem = self.itemListB[self.indexB-1]
+            self.indexB += -1
+
+    def buy(self):
+        # Check if player has sufficient funds
+        if(self.currency >= self.currentDisplayedAItem.getPrice()):
+            # Deduct funds
+            self.currency = self.currency - self.currentDisplayedAItem.getPrice()
+            # Take out item from avaiable list
+            swappedItem = self.itemListA.pop(self.indexA)
+            # Add to bought list
+            self.itemListB.append(swappedItem)
+            # Update current item to beginning of list
+            self.currentDisplayedAItem = self.itemListA[0]
+            self.indexA = 0
+        else:
+            print("Insufficient Funds")
+            
+
+    def equip(self):
+
+        tempAbility = self.abilityList[self.abilityIndex]
+
+        # Replace ability slot with item in question
+        self.abilityList[self.abilityIndex] = self.itemListB[self.indexB]
+
+        # Add temp ability back into list B
+        self.itemListB.insert(self.indexB+1,tempAbility)
+        #self.itemListB.append(tempAbility)
+
+        self.itemListB.pop(self.indexB)
+
+        # Change display
+        self.currentDisplayedBItem = self.itemListB[0]
+        self.indexB = 0
+

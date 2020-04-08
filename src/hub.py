@@ -2,17 +2,20 @@ from res import *
 import pygame
 
 class Hub(Screen):
-    def __init__(self, display, battleUI):
+    def __init__(self, display, battleUI, player):
         Screen.__init__(self, display)
 
         self.battleUI = battleUI
         self.profile = Profile.PROFILE_1 # Defult value
+        self.player = player
         self.init()
     
     def init(self):
         # Create the components of the main screen
         self.textWelcome = Text("Welcome to the Hub!", 200, 100, WHITE, "Arial", 50)
         self.textProfile = Text("Profile " + str(self.profile.value) + " selected.", 350, 200, WHITE, "Arial", 50)
+        self.textMoney = Text("Currency: " + str(self.player.getCurrency()), 350, 475, WHITE, "Arial", 30)
+        self.textMission = Text("Current Mission: " + str(self.player.getMissionNum()), 350, 510, WHITE, "Arial", 30)
 
         self.battle = Button("Battle", 200, 375, 100, 50)
         self.shop = Button("Shop", 550, 375, 100, 50)
@@ -26,6 +29,8 @@ class Hub(Screen):
 
         self.components.append(self.textWelcome)
         self.components.append(self.textProfile)
+        self.components.append(self.textMoney)
+        self.components.append(self.textMission)
     
     def checkForComponentClicks(self, ui):
         if self.battle.isBeingClicked(ui) == True:

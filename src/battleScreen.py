@@ -28,7 +28,7 @@ class BattleScreen(Screen):
         self.ability3 = Button(self.playerSpaceship.getAbility(2).getAbilityName() + " : 2", 50, 500, 200, 50)
         self.ability4 = Button(self.playerSpaceship.getAbility(3).getAbilityName() + " : 3", 300, 500, 200, 50)
         self.exitButton = Button("Exit Battle", 650, 25, 100, 50)
-        self.beginButton = Button("Begin Battle", 650, 100, 100, 50)
+        # self.beginButton = Button("Begin Battle", 650, 100, 100, 50)
         self.abilityString = ""
         self.victoryString = ""
         self.drawComponents()
@@ -69,7 +69,7 @@ class BattleScreen(Screen):
         self.components.append(self.ability3)
         self.components.append(self.ability4)
         self.components.append(self.exitButton)
-        self.components.append(self.beginButton)
+        # self.components.append(self.beginButton)
         
         self.drawPlayer(600,240)
         self.drawEnemy(-50,-100)
@@ -156,16 +156,16 @@ class BattleScreen(Screen):
         if self.exitButton.isBeingClicked(ui) == True:
             ui = UI.HUB
 
-        if self.beginButton.isBeingClicked(ui) == True:
-            result = self.newBattle(self.enemySpaceship, self.player)
-            if result == True:
-                self.victoryString = "Victory!"
-                self.player.setMissionNum()
-            elif result == False:
-                self.victoryString = "Humiliation!"
-                self.player.resetMissionNum()
-            self.drawComponents()
-            print("battle result = " + str(result))
+        # if self.beginButton.isBeingClicked(ui) == True:
+        #     result = self.newBattle(self.enemySpaceship, self.player)
+        #     if result == True:
+        #         self.victoryString = "Victory!"
+        #         self.player.setMissionNum()
+        #     elif result == False:
+        #         self.victoryString = "Humiliation!"
+        #         self.player.resetMissionNum()
+        #     self.drawComponents()
+        #     print("battle result = " + str(result))
 
 
         return ui

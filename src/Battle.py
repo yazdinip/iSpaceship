@@ -51,7 +51,7 @@ class Battle():
                 while(self.moveIsValid(move, self.playerShip) == False):
                     # SELECT NEW MOVE IF ABILITY IS ON COOLDOWN
                     print("Move on cool down!")
-                    move = random.randrange(0,4)
+                    move = int(inputbox.ask(self.display, 'Move Number')) #inp will equal whatever the input is
 
                 self.attack(move, self.playerShip, self.enemyShip)
 
@@ -122,9 +122,9 @@ class Battle():
     def checkIfBattleEnds(self):
         if(self.playerShip.getCurrentHealth() <= 0):
             self.battleInProgress = False
-            self.playerWin = True
         elif(self.enemyShip.getCurrentHealth() <= 0):
             self.battleInProgress = False
+            self.playerWin = True
 
     def reduceCooldowns(self, ship):
 
