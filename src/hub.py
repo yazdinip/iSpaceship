@@ -32,7 +32,7 @@ class Hub(Screen):
             ui = ui.BATTLE
 
         if self.shop.isBeingClicked(ui) == True:
-            ui = ui.HUB
+            ui = ui.SHOP
 
         if self.profiles.isBeingClicked(ui) == True:
             ui = ui.LOAD_PROFILE
