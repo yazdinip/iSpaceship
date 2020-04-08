@@ -132,6 +132,7 @@ class ShopUI(Screen):
             self.Shop.equip()
         elif self.back.isBeingClicked(ui) == True:
             ui = ui.HUB
+            return (self.Shop.getAbilityList())
         elif self.item_equipped1.isBeingClicked(ui) == True:
             self.Shop.setAbilityIndex(0)
             self.Shop.setCounter(0)
