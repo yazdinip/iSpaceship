@@ -3,6 +3,7 @@ from res import *
 from loadprofile import LoadProfile
 from hub import Hub
 from battleScreen import BattleScreen
+from Spaceship import Spaceship
 
 def main():
     global running, display
@@ -21,8 +22,12 @@ def main():
     loadUI = LoadProfile(display)
     hubUI = Hub(display)
     # shopUI = Shop(display, ... )
-    battleUI = battleScreen(display)
 
+    list1, list2 = getTestList()
+    playerShip = loadFromFile(profile)
+    aiShip = Spaceship(50,5,list2)
+
+    battleUI = BattleScreen(display, aiShip, playerShip)
 
     # Game loop
     while running:
@@ -33,22 +38,22 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if ui == ui.LOAD_PROFILE:
                     ui, profile = loadUI.checkForComponentClicks(ui, profile)
+                    battleUI = BattleScreen(display, aiShip, playerShip)
                     hubUI.updateProfile(profile)
                 elif ui == ui.HUB:
                     ui = hubUI.checkForComponentClicks(ui)
                 # elif ui == ui.SHOP:
                 #     ui = shopScreen.checkForComponentClicks(ui)
-                # elif ui == ui.BATTLE:
-                #     ui = battleUI.checkForComponentClicks(ui)
+                elif ui == ui.BATTLE:
+                    ui = battleUI.checkForComponentClicks(ui)
 
             if event.type == pygame.QUIT:
                 running = False
         
         # Clears display
         display.fill(BLACK)
-
         # Draw the space background
-        background = pygame.image.load('img/background.png')
+        background = pygame.image.load('assets/img/background.png')
         display.blit(background, (0, 0))
         
         if ui == ui.LOAD_PROFILE:
@@ -61,7 +66,8 @@ def main():
         elif ui == ui.BATTLE:
         #     shopScreen.update(deltaTime)
             battleUI.draw()
-            pass
+            battleUI.drawComponents()
+            
 
         pygame.display.update()
 

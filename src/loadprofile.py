@@ -7,6 +7,7 @@ class LoadProfile(Screen):
         self.init()
     
     def init(self):
+
         self.text = Text("Load Profile", 300, 100, WHITE, "Arial", 50)
 
         # Create the components of the main screen

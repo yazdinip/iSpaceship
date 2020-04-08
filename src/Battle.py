@@ -2,7 +2,7 @@ from enum import Enum
 
 import Spaceship
 import Ability
-import AbilityBuff
+from res import *
 import random
 
 class Turn(Enum):
@@ -20,6 +20,7 @@ class Battle():
 
         self.battleInProgress = True
         self.playerWin = False
+
 
     def battleSequence(self):
 
@@ -76,16 +77,16 @@ class Battle():
         stunned = False
 
         for i in ship.getBuffList():
-            if(i[0] == AbilityBuff.Buff.HEAL):
+            if(i[0] == Buff.HEAL):
                 print("Ship is healing!")
                 ship.repairDamage(i[1])
-            elif(i[0] == AbilityBuff.Buff.STUN):
+            elif(i[0] == Buff.STUN):
                 print("Ship is stunned!")
                 self.switchTurns()
                 buffRemove = i
                 stunned = True
                 
-            elif(i[0] == AbilityBuff.Buff.ONFIRE):
+            elif(i[0] == Buff.ONFIRE):
                 print("Ship is on fire!")
                 ship.takeDamage(i[1])
 
@@ -94,13 +95,13 @@ class Battle():
             stunned = False
 
     def setBuff(self, buff, ship1, ship2):
-        if(buff[0] == AbilityBuff.Buff.HEAL):
+        if(buff[0] == Buff.HEAL):
             # Repairing removes all debuffs
             ship1.removeAllBuffs()
             ship1.addBuff(buff)
-        elif(buff[0] == AbilityBuff.Buff.STUN):
+        elif(buff[0] == Buff.STUN):
             ship2.addBuff(buff)
-        elif(buff[0] == AbilityBuff.Buff.ONFIRE):
+        elif(buff[0] == Buff.ONFIRE):
             # On fire removes all debuffs
             ship1.removeAllBuffs()
             ship2.addBuff(buff)

@@ -9,7 +9,6 @@ class Hub(Screen):
         self.init()
     
     def init(self):
-        
         # Create the components of the main screen
         self.textWelcome = Text("Welcome to the Hub!", 200, 100, WHITE, "Arial", 50)
         self.textProfile = Text("Profile " + str(self.profile.value) + " selected.", 350, 200, WHITE, "Arial", 50)
@@ -29,7 +28,7 @@ class Hub(Screen):
     
     def checkForComponentClicks(self, ui):
         if self.battle.isBeingClicked(ui) == True:
-            ui = ui.HUB
+            ui = ui.BATTLE
 
         if self.shop.isBeingClicked(ui) == True:
             ui = ui.HUB

@@ -1,5 +1,7 @@
 from enum import Enum
+from Ability import Ability
 import pygame
+import pickle
 
 # Global final constants available to all classes
 
@@ -14,6 +16,12 @@ CENTER_SCREEN_Y = SCREEN_HEIGHT / 2
 # Colours
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
+
+class Buff(Enum):
+    NOBUFF = 0
+    HEAL = 1
+    STUN = 2
+    ONFIRE = 3
 
 class UI(Enum):
     LOAD_PROFILE = 1
@@ -85,3 +93,29 @@ class Button:
                 return True
         
         return False
+
+def getTestList():
+    ability1 = Ability(50, (Buff.NOBUFF,0, 0), 2, "Hyper Cannnon", 0.8, 50)
+    ability2 = Ability(0, (Buff.HEAL,30,2), 3, "Repairs", 1, 50)
+    ability3 = Ability(20, (Buff.STUN,0,2), 4, "Stun Move", 0.5, 50)
+    ability4 = Ability(30, (Buff.ONFIRE,10,2), 4, "Heat Seeking Missles", 1, 50)
+
+    ability5 = Ability(50, (Buff.NOBUFF,0,0), 2, "Hyper Cannnon", 0.8, 50)
+    ability6 = Ability(0, (Buff.HEAL,30,2), 3, "Repairs", 1, 50)
+    ability7 = Ability(20, (Buff.STUN,0,2), 4, "Stun Move", 0.5, 50)
+    ability8 = Ability(30, (Buff.ONFIRE,10,2), 4, "Heat Seeking Missles", 1, 50)
+
+    abilityList = [ability1, ability2, ability3, ability4]
+    abilityList2 = [ability5, ability6, ability7, ability8]
+
+    return abilityList, abilityList2
+
+
+def saveToFile(Player, Profile):
+    filehandler = open('assets/saves/' + str(Profile.name) + ".data", 'wb') 
+    pickle.dump(Player, filehandler)
+
+
+def loadFromFile(Profile):
+    filehandler = open("assets/saves/" + str(Profile.name) + ".data", 'rb') 
+    return pickle.load(filehandler)

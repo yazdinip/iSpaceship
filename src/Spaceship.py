@@ -1,4 +1,4 @@
-import AbilityBuff
+from res import *
 
 class Spaceship(object):
 
