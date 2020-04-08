@@ -35,7 +35,7 @@ def main():
     aiShip = Spaceship(50,5,list2)
 
     player = loadFromFile(profile)
-    battleUI = BattleScreen(display, aiShip, player)
+    battleUI = BattleScreen(display, aiShip, player, ui)
     hubUI = Hub(display, battleUI)
     loadUI = LoadProfile(display, hubUI)
 
@@ -47,7 +47,7 @@ def main():
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if ui == ui.LOAD_PROFILE:
-                    ui = loadUI.checkForComponentClicks(ui)
+                    ui, profile = loadUI.checkForComponentClicks(ui, profile)
                     hubUI.updateProfile(profile)
                 elif ui == ui.HUB:
                     ui = hubUI.checkForComponentClicks(ui)

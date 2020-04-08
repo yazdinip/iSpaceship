@@ -3,6 +3,9 @@ from enum import Enum
 import Spaceship
 import Ability
 from res import *
+import pygame
+import inputbox
+import string
 import random
 
 class Turn(Enum):
@@ -11,21 +14,18 @@ class Turn(Enum):
 
 class Battle():
 
-    def __init__(self, playerShip, enemyShip):
-
+    def __init__(self, playerShip, enemyShip, display):
         self.currentTurn = Turn.PLAYER
-
         self.playerShip = playerShip
         self.enemyShip = enemyShip
-
         self.battleInProgress = True
         self.playerWin = False
+        self.display = display
 
 
     def battleSequence(self):
 
         turnCounter = 0
-        #g = input("Press Enter to Start Battle ") 
         # Wait until battle is over
         while(self.battleInProgress):
             # Code used to test in console
@@ -43,11 +43,11 @@ class Battle():
 
             # When it is the players turn
             if(self.currentTurn == Turn.PLAYER):
-                g = input("Enter your move: ") 
                 # First reduce cooldowns
                 self.reduceCooldowns(self.playerShip)
                 # SELECT A MOVE USING UI
-                move = g
+                move = int(inputbox.ask(self.display, 'Move Number')) #inp will equal whatever the input is
+                print(move)
                 while(self.moveIsValid(move, self.playerShip) == False):
                     # SELECT NEW MOVE IF ABILITY IS ON COOLDOWN
                     print("Move on cool down!")
