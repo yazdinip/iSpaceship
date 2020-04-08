@@ -1,0 +1,123 @@
+import AbilityBuff
+import Ability
+
+class Shop():
+
+    def __init__(self, itemListA, itemListB, currency, abilityList):
+
+        self.itemListA = itemListA
+        self.itemListB = itemListB
+        self.currency = currency
+        self.abilityList = abilityList
+
+        self.abilitySwap = 0
+
+        self.currentDisplayedAItem = itemListA[0]
+        self.indexA = 0
+        self.currentDisplayedBItem = itemListB[0]
+        self.indexB = 0
+
+        self.abilityIndex = 0
+
+    def shopSequence(self):
+        exit = False
+
+        while(exit == False):
+            ## NEED UI ELEMENTS
+            break
+            
+        return (self.itemListA, self.itemListB, self.currency, self.abilityList)
+
+    def nextA(self):
+        if(self.indexA != len(self.itemListA)-1):
+            self.currentDisplayedAItem = self.itemListA[self.indexA+1]
+            self.indexA += 1
+
+    def prevA(self):
+        if(self.indexA != 0):
+            self.currentDisplayedAItem = self.itemListA[self.indexA-1]
+            self.indexA += -1
+
+    def nextB(self):
+        if(self.indexB != len(self.itemListB)-1):
+            self.currentDisplayedBItem = self.itemListB[self.indexB+1]
+            self.indexB += 1
+
+    def prevB(self):
+        if(self.indexB != 0):
+            self.currentDisplayedBItem = self.itemListB[self.indexB-1]
+            self.indexB += -1
+
+    def buy(self):
+        # Check if player has sufficient funds
+        if(self.currency >= self.currentDisplayedAItem.getPrice()):
+            # Deduct funds
+            self.currency = self.currency - self.currentDisplayedAItem.getPrice()
+            # Take out item from avaiable list
+            swappedItem = self.itemListA.pop(self.indexA)
+            # Add to bought list
+            self.itemListB.append(swappedItem)
+            # Update current item to beginning of list
+            self.currentDisplayedAItem = self.itemListA[0]
+            self.indexA = 0
+        else:
+            print("Insufficient Funds")
+
+    def equip(self):
+
+        tempAbility = self.abilityList[self.abilityIndex]
+
+        # Replace ability slot with item in question
+        self.abilityList[self.abilityIndex] = self.itemListB[self.indexB]
+
+        # Add temp ability back into list B
+        self.itemListB.append(tempAbility)
+
+        self.itemListB.pop(self.indexB)
+
+        # Change display
+        self.currentDisplayedBItem = self.itemListB[0]
+        self.indexB = 0
+
+    def check(self):
+        print("Money: " + str(self.currency))
+        print(self.itemListA)
+        print(self.itemListB)
+        print("ARSENAL")
+        print(self.abilityList)
+        print("Current Item Ava: " + self.currentDisplayedAItem.getAbilityName())
+        print("Current Item Bou: " + self.currentDisplayedBItem.getAbilityName())
+
+    @staticmethod
+    def getAbilities():
+
+        ability1 = Ability.Ability(50, (AbilityBuff.Buff.NOBUFF,0, 0), 2, "Hyper Cannnon", 0.8, 50)
+        ability2 = Ability.Ability(0, (AbilityBuff.Buff.HEAL,30,2), 3, "Repairs", 1, 50)
+        ability3 = Ability.Ability(20, (AbilityBuff.Buff.STUN,0,2), 4, "Stun Move", 0.5, 50)
+        ability4 = Ability.Ability(30, (AbilityBuff.Buff.ONFIRE,10,2), 4, "Heat Seeking Missles", 1, 50)
+
+        ability5 = Ability.Ability(50, (AbilityBuff.Buff.NOBUFF,0,0), 2, "YESSIR", 0.8, 50)
+        ability6 = Ability.Ability(0, (AbilityBuff.Buff.HEAL,30,2), 3, "ESKEGIT", 1, 500)
+        ability7 = Ability.Ability(20, (AbilityBuff.Buff.STUN,0,2), 4, "YEET", 0.5, 50)
+        ability8 = Ability.Ability(30, (AbilityBuff.Buff.ONFIRE,10,2), 4, "LMAO", 1, 50)
+
+        ability9 = Ability.Ability(50, (AbilityBuff.Buff.NOBUFF,0,0), 2, "BRUH", 0.8, 50)
+        ability10 = Ability.Ability(0, (AbilityBuff.Buff.HEAL,30,2), 3, "NAWWW", 1, 500)
+        ability11 = Ability.Ability(20, (AbilityBuff.Buff.STUN,0,2), 4, "JHEEEZ", 0.5, 50)
+        ability12 = Ability.Ability(30, (AbilityBuff.Buff.ONFIRE,10,2), 4, "BLESSED", 1, 50)
+
+        allAbilities = [ability1, ability2, ability3, ability4, ability5, ability6, ability7, ability8, ability9, ability10, ability11, ability12]
+        return  (allAbilities)
+
+#list a is available 
+#list b is bought 
+#ability list is equipped
+
+
+#shopMode = Shop(abilityListA, abilityListB, currency, abilityList)
+
+#shopMode.check()
+
+#shopMode.equip()
+
+#shopMode.check()
