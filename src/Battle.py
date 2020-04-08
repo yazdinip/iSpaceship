@@ -26,7 +26,6 @@ class Battle():
     def battleSequence(self):
 
         turnCounter = 0
-        #g = input("Press Enter to Start Battle ") 
         # Wait until battle is over
         while(self.battleInProgress):
             # Code used to test in console
@@ -48,7 +47,6 @@ class Battle():
                 self.reduceCooldowns(self.playerShip)
                 # SELECT A MOVE USING UI
                 move = int(inputbox.ask(self.display, 'Move Number')) #inp will equal whatever the input is
-                input("Press Enter to continue...")
                 print(move)
                 while(self.moveIsValid(move, self.playerShip) == False):
                     # SELECT NEW MOVE IF ABILITY IS ON COOLDOWN

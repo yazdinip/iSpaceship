@@ -34,12 +34,7 @@ class BattleScreen(Screen):
 
 
         # This is where battle gets initailized 
-        # the battle seq is called 
-        # if battle seq = 1:
-        #   player.nummision =+ the value that comes from the battleseq
-        # else:
-        #  player.nummision = 0
-        #  hook up story 
+        
 
 
     def drawComponents(self):
@@ -66,7 +61,13 @@ class BattleScreen(Screen):
         # we have to find a way to only start the battle sequence once the player has gone through profile selection and then has clicked on battle. 
         # rn it runs with battle initialization in battlescreen. find a way to do that and put battlesequence there only 
             self.battle.battleSequence()
-        
+            # t
+            #after the battle seq is called 
+        # if battle seq = 1:
+        #   player.nummision =+ the value that comes from the battleseq
+        # else:
+        #  player.nummision = 0
+        #  hook up story 
         
 
     def drawPlayer(self, x, y):
