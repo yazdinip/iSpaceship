@@ -18,7 +18,7 @@ class BattleScreen(Screen):
         self.enemySpaceship = enemySpaceship
         self.battle = Battle(self.playerSpaceship, enemySpaceship)
         self.display = display
-        # self.player = player
+        
 
         self.ability1 = Button(self.playerSpaceship.getAbility(0).getAbilityName(), 50, 500, 200, 50)
         self.ability2 = Button(self.playerSpaceship.getAbility(1).getAbilityName(), 300, 500, 200, 50)
@@ -26,14 +26,11 @@ class BattleScreen(Screen):
         self.ability4 = Button(self.playerSpaceship.getAbility(3).getAbilityName(), 300, 400, 200, 50)
         self.textWelcome = Text("Battle!", 200, 100, WHITE, "Arial", 50)
 
-        # self.drawPlayer(display, 1, 0, 0)
         self.drawComponents()
 
 
-    # def g = input("Press Enter to Start Battle ") 
-    # 
     def drawComponents(self):
-        # playerString = "Health: " + s
+        
 
         self.textWelcome = Text("Battle!", 300, 25, WHITE, "Arial", 50)
 
@@ -48,8 +45,7 @@ class BattleScreen(Screen):
         self.components.append(self.ability3)
         self.components.append(self.ability4)
         
-            # playerLvl1 = pygame.image.load('assets/img/enemy.png')
-            # self.display.blit(playerLvl1, (0, 0))
+        # self.drawPlayer(0,0)
         self.drawEnemy(0,0)
         
         
