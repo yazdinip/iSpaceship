@@ -77,5 +77,8 @@ class Player(object):
     def setSpaceShip (self, spaceship):
         self.playerSpaceShip = spaceship
     
-    def setMissionNum(self, missionNum):
-        self.missionNum= missionNum
+    def setMissionNum(self):
+        self.missionNum =+ 1
+
+    def resetMissionNum(self):
+        self.missionNum = 0 

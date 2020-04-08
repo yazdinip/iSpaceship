@@ -160,10 +160,10 @@ class BattleScreen(Screen):
             result = self.newBattle(self.enemySpaceship, self.player)
             if result == True:
                 self.victoryString = "Victory!"
-                self.player.nummision =+ 1
+                self.player.setMissionNum()
             elif result == False:
                 self.victoryString = "Humiliation!"
-                self.player.nummision = 0
+                self.player.resetMissionNum()
             self.drawComponents()
             print("battle result = " + str(result))
 
