@@ -23,10 +23,10 @@ class BattleScreen(Screen):
         self.enemySpaceship = enemySpaceship
         self.display = display
         self.battle = Battle(self.playerSpaceship, enemySpaceship, self.display)
-        self.ability1 = Button(self.playerSpaceship.getAbility(0).getAbilityName(), 50, 500, 200, 50)
-        self.ability2 = Button(self.playerSpaceship.getAbility(1).getAbilityName(), 300, 500, 200, 50)
-        self.ability3 = Button(self.playerSpaceship.getAbility(2).getAbilityName(), 50, 400, 200, 50)
-        self.ability4 = Button(self.playerSpaceship.getAbility(3).getAbilityName(), 300, 400, 200, 50)
+        self.ability1 = Button(self.playerSpaceship.getAbility(0).getAbilityName() + " : 0", 50, 400, 200, 50)
+        self.ability2 = Button(self.playerSpaceship.getAbility(1).getAbilityName() + " : 1", 300, 400, 200, 50)
+        self.ability3 = Button(self.playerSpaceship.getAbility(2).getAbilityName() + " : 2", 50, 500, 200, 50)
+        self.ability4 = Button(self.playerSpaceship.getAbility(3).getAbilityName() + " : 3", 300, 500, 200, 50)
         self.exitButton = Button("Exit Battle", 650, 25, 100, 50)
         self.beginButton = Button("Begin Battle", 650, 100, 100, 50)
         self.abilityString = ""
