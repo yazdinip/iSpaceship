@@ -27,6 +27,7 @@ class BattleScreen(Screen):
         self.ability2 = Button(self.playerSpaceship.getAbility(1).getAbilityName(), 300, 500, 200, 50)
         self.ability3 = Button(self.playerSpaceship.getAbility(2).getAbilityName(), 50, 400, 200, 50)
         self.ability4 = Button(self.playerSpaceship.getAbility(3).getAbilityName(), 300, 400, 200, 50)
+        self.exitButton = Button("Exit Battle", 700, 25, 75, 50)
         self.abilityString = ""
         self.drawComponents()
 
@@ -58,6 +59,7 @@ class BattleScreen(Screen):
         self.components.append(self.ability2)
         self.components.append(self.ability3)
         self.components.append(self.ability4)
+        self.components.append(self.exitButton)
         
         self.drawPlayer(600,240)
         self.drawEnemy(-50,-100)
@@ -142,6 +144,9 @@ class BattleScreen(Screen):
         if self.ability4.isBeingClicked(ui) == True:
             self.abilityString = "Chosen Ability: " + self.playerSpaceship.getAbility(3).getAbilityName()
             self.drawComponents()
+
+        if self.exitButton.isBeingClicked(ui) == True:
+            ui = UI.HUB
 
         return ui
 
