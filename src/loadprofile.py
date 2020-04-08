@@ -25,6 +25,9 @@ class LoadProfile(Screen):
         self.components.append(self.profile4)
         self.components.append(self.exit)
         self.components.append(self.text)
+
+
+        
     
     def checkForComponentClicks(self, ui):
         if self.profile1.isBeingClicked(ui) == True:

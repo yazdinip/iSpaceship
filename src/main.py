@@ -19,15 +19,23 @@ def main():
     ui = UI.LOAD_PROFILE
     profile = Profile.PROFILE_1
 
+    ##  Uncomment to generate new profile data
+    # player1 = Player()
+    # saveToFile(player1, Profile.PROFILE_1)
+    # saveToFile(player1, Profile.PROFILE_2)
+    # saveToFile(player1, Profile.PROFILE_3)
+    # saveToFile(player1, Profile.PROFILE_4)
+
     # Create screen
 
     # shopUI = Shop(display, ... )
 
     list1, list2 = getTestList()
-    playerShip = loadFromFile(profile)
+    # playerShip = loadFromFile(profile)
     aiShip = Spaceship(50,5,list2)
 
-    battleUI = BattleScreen(display, aiShip, playerShip)
+    player = loadFromFile(profile)
+    battleUI = BattleScreen(display, aiShip, player)
     hubUI = Hub(display, battleUI)
     loadUI = LoadProfile(display, hubUI)
 
