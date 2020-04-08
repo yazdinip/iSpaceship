@@ -28,15 +28,19 @@ class BattleScreen(Screen):
         self.ability3 = Button(self.playerSpaceship.getAbility(2).getAbilityName(), 50, 400, 200, 50)
         self.ability4 = Button(self.playerSpaceship.getAbility(3).getAbilityName(), 300, 400, 200, 50)
         self.exitButton = Button("Exit Battle", 700, 25, 75, 50)
-        self.abilityString = ""
+        self.beginButton = Button("Begin Battle", 700, 75, 75, 50)
         self.drawComponents()
 
         # This is where battle gets initailized 
-        
+    
+    def newBattle(self, enemySpaceship, player):
+        self.battle = Battle(self.playerSpaceship, enemySpaceship, self.display)
+        return self.battle.battleSequence()
+
 
     def drawComponents(self):
         
-
+        self.abilityString = ""
         self.textWelcome = Text("Battle!", 450, 25, WHITE, "Arial", 50)
 
 
@@ -60,15 +64,16 @@ class BattleScreen(Screen):
         self.components.append(self.ability3)
         self.components.append(self.ability4)
         self.components.append(self.exitButton)
+        self.components.append(self.beginButton)
         
         self.drawPlayer(600,240)
         self.drawEnemy(-50,-100)
         
         # @will the problem where the ui would turn into non type is messing up here too. If you could keep UI consistent, then this would work as well.
-        if self.ui == UI.BATTLE:
+        # if self.ui == UI.BATTLE:
         # we have to find a way to only start the battle sequence once the player has gone through profile selection and then has clicked on battle. 
         # rn it runs with battle initialization in battlescreen. find a way to do that and put battlesequence there only 
-            self.battle.battleSequence()
+            # self.battle.battleSequence()
             # t
             #after the battle seq is called 
         # if battle seq = 1:
@@ -123,15 +128,13 @@ class BattleScreen(Screen):
 
     #     return n
 
-
-
-
- 
+    
     def checkForComponentClicks(self, ui):
         if self.ability1.isBeingClicked(ui) == True:
         #g = input("Enter your moveT ") rue:
             self.abilityString = "Chosen Ability: " + self.playerSpaceship.getAbility(0).getAbilityName()
             self.drawComponents()
+            # getInput()
             
         if self.ability2.isBeingClicked(ui) == True:
             self.abilityString = "Chosen Ability: " + self.playerSpaceship.getAbility(1).getAbilityName()
@@ -147,6 +150,9 @@ class BattleScreen(Screen):
 
         if self.exitButton.isBeingClicked(ui) == True:
             ui = UI.HUB
+
+        if self.beginButton.isBeingClicked(ui) == True:
+            self.result = self.battle.battleSequence()
 
         return ui
 
@@ -165,3 +171,38 @@ class BattleScreen(Screen):
     
     def getDisplay(self):
         return self.display
+
+
+import tkinter as tk
+from tkinter import messagebox
+
+# Probably not neede
+class getInput():
+
+    def __init__(self):
+        root = tk.Tk()
+        frame = tk.Frame(root)
+        frame.pack()
+
+        button1 = tk.Button(frame, 
+                        text="Ability 1", 
+                        command=lambda: print("A1"))
+        button1.pack(side=tk.LEFT)
+        button2 = tk.Button(frame,
+                        text="Ability 2",
+                        command=lambda: print("A2"))
+        button2.pack(side=tk.LEFT)
+        button3 = tk.Button(frame,
+                        text="Ability 3",
+                        command=lambda: print("A3"))
+        button3.pack(side=tk.LEFT)
+        button4 = tk.Button(frame,
+                        text="Ability 4",
+                        command=lambda: print("A4"))
+        button4.pack(side=tk.LEFT)
+
+        root.mainloop()
+
+
+            
+

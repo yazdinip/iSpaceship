@@ -30,6 +30,7 @@ class Hub(Screen):
     def checkForComponentClicks(self, ui):
         if self.battle.isBeingClicked(ui) == True:
             ui = ui.BATTLE
+            # self.battleUI.enterBattle
 
         if self.shop.isBeingClicked(ui) == True:
             ui = ui.HUB
