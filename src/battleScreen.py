@@ -73,8 +73,9 @@ class BattleScreen(Screen):
 
     def drawEnemy(self, x, y):
         if self.player.getMissionNum() == 0:
-            enemyLvl1 = pygame.image.load(random.choice(os.listdir("assets/GraphicsAssetSpaceships/PNG/Spaceships/01/")))
-            display.blit(enemyLvl1, (x, y))
+            enemyLvl1 = "assets/GraphicsAssetSpaceships/PNG/Spaceships/01/" + str(random.choice(os.listdir("assets/GraphicsAssetSpaceships/PNG/Spaceships/01/")))
+            enemyLvl1Add = pygame.image.load(enemyLvl1)
+            self.display.blit(enemyLvl1Add, (x, y))
     #     if player == 2:
     #         enemyLvl2 = pygame.image.load(random.choice(os.listdir("assets/GraphicsAssetSpaceships/PNG/Spaceships/Lvl2")))
     #         display.blit(enemyLvl2, (x, y))
