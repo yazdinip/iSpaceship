@@ -71,8 +71,11 @@ def main():
                     hubUI.init()
                     #print("hello")
                 elif ui == ui.SHOP:
-                     ui = shopUI.checkForComponentClicks(ui)
-                     shopUI.init()
+                    ui = shopUI.checkForComponentClicks(ui)
+                    shopUI.init()
+                     
+                    textMoney = Text("Currency: " + str(player.getCurrency()), 350, 475, WHITE, "Arial", 30)
+                    textMission = Text("Current Mission: " + str(player.getMissionNum()), 350, 510, WHITE, "Arial", 30)
                 elif ui == ui.BATTLE:
                     ui = battleUI.checkForComponentClicks(ui)
 

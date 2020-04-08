@@ -83,7 +83,7 @@ class Player(object):
         self.playerSpaceShip = spaceship
     
     def setMissionNum(self):
-        self.missionNum =+ 1
+        self.missionNum = self.missionNum + 1
 
     def resetMissionNum(self):
         self.missionNum = 0 

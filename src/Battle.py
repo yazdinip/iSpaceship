@@ -24,10 +24,11 @@ class Battle():
 
 
     def battleSequence(self):
-
+        self.playerWin = False
         turnCounter = 0
         # Wait until battle is over
         while(self.battleInProgress):
+            self.playerWin = False
             # Code used to test in console
             turnCounter = turnCounter + 1
             print("Turn " + str(turnCounter) + " " + str(self.currentTurn))
