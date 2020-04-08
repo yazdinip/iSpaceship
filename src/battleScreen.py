@@ -61,6 +61,7 @@ class BattleScreen(Screen):
         self.drawPlayer(600,240)
         self.drawEnemy(-50,-100)
         
+        # @will the problem where the ui would turn into non type is messing up here too. If you could keep UI consistent, then this would work as well.
         if self.ui == UI.BATTLE:
         # we have to find a way to only start the battle sequence once the player has gone through profile selection and then has clicked on battle. 
         # rn it runs with battle initialization in battlescreen. find a way to do that and put battlesequence there only 
