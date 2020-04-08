@@ -38,4 +38,5 @@ class Ability(object):
         if(self.currentCoolDown != 0):
             self.currentCoolDown -= 1
 
-    
+    def __repr__(self):
+        return (f"{self.abilityName}")

@@ -18,9 +18,16 @@ class Shop():
         self.indexB = 0
 
         self.abilityIndex = 0
+        self.counter = 0
 
     #return (self.itemListA, self.itemListB, self.currency, self.abilityList)
+    def getCounter(self):
+        return self.counter
 
+    def setCounter(self, n):
+        self.counter = n 
+        return self.counter    
+        
     def getCurrentA(self):
         return self.currentDisplayedAItem
 
@@ -29,6 +36,13 @@ class Shop():
 
     def getCurrency(self):
         return self.currency
+
+    def setAbilityIndex(self, n):
+        self.abilityIndex = n
+        return self.abilityIndex
+        
+    def getAbilityIndex(self):
+        return self.abilityIndex
 
     def getAbilityList(self):
         return self.abilityList
@@ -82,7 +96,8 @@ class Shop():
         self.abilityList[self.abilityIndex] = self.itemListB[self.indexB]
 
         # Add temp ability back into list B
-        self.itemListB.append(tempAbility)
+        self.itemListB.insert(self.indexB+1,tempAbility)
+        #self.itemListB.append(tempAbility)
 
         self.itemListB.pop(self.indexB)
 
