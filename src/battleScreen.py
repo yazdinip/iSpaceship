@@ -43,7 +43,7 @@ class BattleScreen(Screen):
         self.playerBuff = Text("Player Buff: " + str(len(self.player.getSpaceShip().getBuffList())),425, 350, WHITE, "Arial", 25)
         self.enemyHealth = Text("Enemy Health: " + str(self.enemySpaceship.getCurrentHealth()),275, 200, WHITE, "Arial", 20)
         self.enemyBuff = Text("Enemy Buff: " + str(len(self.enemySpaceship.getBuffList())),275, 225, WHITE, "Arial", 20)
-        self.chosneAbility = Text(self.abilityString,450, 200, WHITE, "Arial", 20)
+        self.chosneAbility = Text(self.abilityString, 50, 350, WHITE, "Arial", 20)
 
 
         self.components.clear()
@@ -135,7 +135,7 @@ class BattleScreen(Screen):
             self.abilityString = "Chosen Ability: " + self.playerSpaceship.getAbility(1).getAbilityName()
             self.drawComponents()
 
-        if self.abilic) == True:
+        if self.ability3.isBeingClicked(ui) == True:
             self.abilityString = "Chosen Ability: " + self.playerSpaceship.getAbility(2).getAbilityName()
             self.drawComponents()
 
