@@ -56,9 +56,9 @@ class ShopUI(Screen):
         self.item_equipped2 = Button(self.Shop.getAbilityList()[1].getAbilityName(),200 , 510, 80, 60)
         self.item_equipped3 = Button(self.Shop.getAbilityList()[2].getAbilityName(),300 , 510, 80, 60)
         self.item_equipped4 = Button(self.Shop.getAbilityList()[3].getAbilityName(),400 , 510, 80, 60)
-        #self.item_bought_name = Text("Name: " + abilityList[0].getAbilityName(), 100, 300, WHITE, "Arial", 20)
-        self.item_details = Text("Ability Details:", 500, 510, WHITE, "Arial", 15)
-        self.item_equipped_price = Text("Price: " + str(self.Shop.getAbilityList()[self.Shop.getCounter()].getPrice())+"$", 600, 525, WHITE, "Arial", 12)
+
+        self.item_details = Text(f"Ability Details for {self.Shop.getAbilityList()[self.Shop.getAbilityIndex()].getAbilityName()} ", 500, 510, WHITE, "Arial", 15)
+        self.item_equipped_price = Text("Price: " + str(self.Shop.getAbilityList()[self.Shop.getAbilityIndex()].getPrice())+"$", 600, 525, WHITE, "Arial", 12)
         self.item_equipped_damage = Text("Damage: " + str(self.Shop.getAbilityList()[self.Shop.getCounter()].getAbilityDamage()), 600, 540, WHITE, "Arial", 12)
         self.item_equipped_cool_down = Text("Cool Down: " + str(self.Shop.getAbilityList()[self.Shop.getCounter()].getCoolDown())+"s", 600, 555, WHITE, "Arial", 12)
         self.item_equipped_hit_chance = Text("Hit Chance: " + str(self.Shop.getAbilityList()[self.Shop.getCounter()].getHitChance()*10)+"%", 600, 570, WHITE, "Arial", 12)
@@ -133,12 +133,16 @@ class ShopUI(Screen):
         elif self.back.isBeingClicked(ui) == True:
             ui = ui.HUB
         elif self.item_equipped1.isBeingClicked(ui) == True:
+            self.Shop.setAbilityIndex(0)
             self.Shop.setCounter(0)
         elif self.item_equipped2.isBeingClicked(ui) == True:
+            self.Shop.setAbilityIndex(1)
             self.Shop.setCounter(1)
         elif self.item_equipped3.isBeingClicked(ui) == True:
+            self.Shop.setAbilityIndex(2)
             self.Shop.setCounter(2)
         elif self.item_equipped4.isBeingClicked(ui) == True:
+            self.Shop.setAbilityIndex(3)
             self.Shop.setCounter(3)
 #        elif self.backButton.isBeingClicked(ui) == True:
 #            ui = ui.HUB
