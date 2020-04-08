@@ -28,6 +28,14 @@ class BattleScreen(Screen):
 
         self.drawComponents()
 
+        # This is where battle gets initailized 
+        # the battle seq is called 
+        # if battle seq = 1:
+        #   player.nummision =+ the value that comes from the battleseq
+        # else:
+        #  player.nummision = 0
+        #  hook up story 
+
 
     def drawComponents(self):
         
@@ -106,3 +114,5 @@ class BattleScreen(Screen):
 
     def updatePlayer(self, player):
         self.player = player
+
+    def handleUserInput(self):
