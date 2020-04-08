@@ -44,7 +44,7 @@ def main():
     allAbilities = Shop.getAbilities()
     abilityListA = allAbilities[0:4]
     abilityListB = allAbilities[4:8]
-    abilityList = allAbilities[8:]
+    abilityList = allAbilities[8:]#4 equipped abilities
     currency = 200
     shopUI = ShopUI(display, Shop(abilityListA, abilityListB, currency, abilityList))
     
@@ -61,9 +61,9 @@ def main():
                 elif ui == ui.HUB:
                     ui = hubUI.checkForComponentClicks(ui)
                     #print("hello")
-                    shopUI.init()
                 elif ui == ui.SHOP:
                      ui = shopUI.checkForComponentClicks(ui)
+                     shopUI.init()
                 elif ui == ui.BATTLE:
                     ui = battleUI.checkForComponentClicks(ui)
 
@@ -81,13 +81,13 @@ def main():
         elif ui == ui.HUB:
             hubUI.draw()
         elif ui == ui.SHOP:
-            shopUI.draw()
             print("hllo")
-           # display.fill(BLACK)
+            display.fill(BLACK)
         # Draw the space background
-           # background = pygame.image.load('assets/img/background_shop.png')
-           # display.blit(background, (0, 0))
-             #   shopScreen.update(deltaTime)
+            background = pygame.image.load('assets/img/background_shop.png')
+            display.blit(background, (0, 0))
+            shopUI.draw()
+            #shopScreen.update(deltaTime)
            # shopUI.init()
         elif ui == ui.BATTLE:
             battleUI.draw()
