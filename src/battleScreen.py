@@ -27,20 +27,23 @@ class BattleScreen(Screen):
         self.ability2 = Button(self.playerSpaceship.getAbility(1).getAbilityName(), 300, 500, 200, 50)
         self.ability3 = Button(self.playerSpaceship.getAbility(2).getAbilityName(), 50, 400, 200, 50)
         self.ability4 = Button(self.playerSpaceship.getAbility(3).getAbilityName(), 300, 400, 200, 50)
-        self.exitButton = Button("Exit Battle", 700, 25, 75, 50)
-        self.beginButton = Button("Begin Battle", 700, 75, 75, 50)
+        self.exitButton = Button("Exit Battle", 650, 25, 100, 50)
+        self.beginButton = Button("Begin Battle", 650, 100, 100, 50)
+        self.abilityString = ""
+        self.victoryString = ""
         self.drawComponents()
 
         # This is where battle gets initailized 
     
     def newBattle(self, enemySpaceship, player):
+        self.abilityString = ""
+        self.victorString = ""
         self.battle = Battle(self.playerSpaceship, enemySpaceship, self.display)
         return self.battle.battleSequence()
 
 
     def drawComponents(self):
         
-        self.abilityString = ""
         self.textWelcome = Text("Battle!", 450, 25, WHITE, "Arial", 50)
 
 
@@ -49,6 +52,7 @@ class BattleScreen(Screen):
         self.enemyHealth = Text("Enemy Health: " + str(self.enemySpaceship.getCurrentHealth()),275, 200, WHITE, "Arial", 20)
         self.enemyBuff = Text("Enemy Buff: " + str(len(self.enemySpaceship.getBuffList())),275, 225, WHITE, "Arial", 20)
         self.chosneAbility = Text(self.abilityString, 50, 350, WHITE, "Arial", 20)
+        self.victoryMessage = Text(self.victoryString, 150, 275, WHITE, "Arial", 50)
 
 
         self.components.clear()
@@ -58,6 +62,7 @@ class BattleScreen(Screen):
         self.components.append(self.enemyHealth)
         self.components.append(self.enemyBuff)
         self.components.append(self.chosneAbility)
+        self.components.append(self.victoryMessage)
 
         self.components.append(self.ability1)
         self.components.append(self.ability2)
@@ -152,7 +157,16 @@ class BattleScreen(Screen):
             ui = UI.HUB
 
         if self.beginButton.isBeingClicked(ui) == True:
-            self.result = self.battle.battleSequence()
+            result = self.newBattle(self.enemySpaceship, self.player)
+            if result == True:
+                self.victoryString = "Victory!"
+                self.player.nummision =+ 1
+            elif result == False:
+                self.victoryString = "Humiliation!"
+                self.player.nummision = 0
+            self.drawComponents()
+            print("battle result = " + str(result))
+
 
         return ui
 
