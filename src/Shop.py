@@ -18,9 +18,16 @@ class Shop():
         self.indexB = 0
 
         self.abilityIndex = 0
+        self.counter = 0
 
     #return (self.itemListA, self.itemListB, self.currency, self.abilityList)
-
+    def getCounter(self):
+        return self.counter
+        
+    def setCounter(self, n):
+        self.counter = n 
+        return self.counter    
+        
     def getCurrentA(self):
         return self.currentDisplayedAItem
 
@@ -90,6 +97,8 @@ class Shop():
         self.currentDisplayedBItem = self.itemListB[0]
         self.indexB = 0
 
+    def detailIndex(self):
+        return 0 
     def check(self):
         print("Money: " + str(self.currency))
         print(self.itemListA)
