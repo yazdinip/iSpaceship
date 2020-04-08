@@ -35,7 +35,7 @@ def main():
     aiShip = Spaceship(50,5,list2)
 
     player = loadFromFile(profile)
-    battleUI = BattleScreen(display, aiShip, player)
+    battleUI = BattleScreen(display, aiShip, player, ui)
     hubUI = Hub(display, battleUI)
     loadUI = LoadProfile(display, hubUI)
 
